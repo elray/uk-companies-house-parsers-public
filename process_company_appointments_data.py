@@ -77,7 +77,8 @@ def process_person_row(row, output_writer):
 
 
 def init_company_output_file(filename):
-    output_companies_file = open(filename, 'w')
+    # 11SEP2024 : added buffering = -1 and encoding utf-8 and newline to prevent blank rows in windows
+    output_companies_file = open(filename, 'w', -1, 'utf-8', newline='')
     companies_writer = csv.writer(output_companies_file, delimiter=",")
     companies_writer.writerow([
         "Company Number", "Company Status", "Number of Officers",
@@ -87,7 +88,8 @@ def init_company_output_file(filename):
 
 
 def init_person_output_file(filename):
-    output_persons_file = open(filename, 'w')
+    # 11SEP2024 : added buffering = -1 and encoding utf-8 and newline to prevent blank rows in windows
+    output_persons_file = open(filename, 'w', -1, 'utf-8', newline='')
     persons_writer = csv.writer(output_persons_file, delimiter=",")
     persons_writer.writerow([
         "Company Number", "App Date Origin", "Appointment Type",
@@ -159,7 +161,8 @@ if __name__ == '__main__':
         sys.exit(1)
     input_filename = sys.argv[1]
     output_folder = sys.argv[2]
-    input_file = open(input_filename, 'r')
+    # 11SEP2024 : added buffering = -1 and encoding utf-8
+    input_file = open(input_filename, 'r', -1, 'utf-8')
     base_input_name = os.path.basename(input_filename)
     # Do not include the extension in the base input name
     base_input_name = os.path.splitext(base_input_name)[0]
